@@ -1,0 +1,50 @@
+<header class="header-outer">
+  <div class="logo-container">
+    <img src="assets/img/nebula-logo.png" alt="Logo" class="logo">
+    <h1 class="nebula">nEBULA</h1>
+  </div>
+
+  <div class="container">
+    <div class="search-container">
+      <input type="text" id="nameInput" [(ngModel)]="searchTerm" class="search-box" placeholder="Search your item...">
+      <button type="submit"  (click)="searchComponentByName()" class="search-button">Search</button>
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><button routerLink="/starter/home">Home</button></li>
+        <li><button routerLink="/container/detail/{{currentComponentID}}" routerLinkActive="active">Details</button></li>
+        <li><button routerLink="/container/availability/{{currentComponentID}}" routerLinkActive="active">Availability</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div *ngIf="searchResults.length > 0">
+  <h3>Search Results:</h3>
+  <ul>
+    <li *ngFor="let component of searchResults">
+      <a href="/container/detail/{{component._id}}">{{ component.componentName }}</a>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="componentData">
+  <h3>{{ componentData.componentName }}</h3>
+  <img src="{{componentData.componentImage}}" alt="Component Image">
+</div>
+
+<div class="stores">
+  <div class="store-container">
+    <div  *ngFor="let store of stores">
+      <button class="Store-btn"  type="button"  (click)="getStoreByNumber(store.storeNumber)">{{store.storeName}}</button>
+    </div>
+  </div>
+  <div class="store-detail" *ngIf="storeData">
+    <h3 class="store-name">{{  storeData.storeName}}</h3>
+    <img class="store-image"  src="{{storeData.storeImage}}"  alt="Store Image"/>
+    <p class="store-description">{{  storeData.storeDescription}}</p>
+    <p class="store-location">{{  storeData.storeLocation}}</p>
+    <p class="store-phone">{{  storeData.storePhone}}</p>
+    <p class="store-url">{{  storeData.storeURL}}</p>
+  </div>
+</div>

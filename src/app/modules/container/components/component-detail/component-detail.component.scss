@@ -1,0 +1,136 @@
+/* Default styles for the header */
+body {
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+*{
+  margin: 0;
+}
+.header-outer {
+  background-color: #003333;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+
+  .active {
+    font-weight: bold; font-size: 15px; color: #ffffff;
+  }
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+  float: left;
+  width: 33%;
+  height: auto;
+}
+.logo {
+  float: left;
+  width: 40%;
+  min-width: 70px;
+  max-width: 80px;
+  height: auto;
+  margin: 10px;
+}
+.nebula{
+  font-weight: bold;
+  float: left;
+  width: 60%;
+  color:#00FFFF;
+  font-size: 35px;
+  font-family: 'Montserrat Alternates', sans-serif;
+
+
+}
+.container {
+  float: left;
+  width: 67%;
+}
+/* Style for the search container */
+.search-container {
+  position: relative;
+  width: 50vw;
+  max-width: 500px;
+  height: auto;
+  margin: 10px auto;
+}
+/* Style for the search input box */
+.search-box {
+  padding:  10px 12px 10px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  background-color: #CCE6E6;
+  border-radius: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+/* Style for the search button */
+.search-button {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 8px 22px;
+  font-size: 16px;
+  background-color: #4AB6BD;
+  color: #002626;
+  border: none;
+  font-weight: bold;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* Hover effect for the search button */
+.search-button:hover {
+  background-color: #6fdce3;
+  color: #000000;
+}
+.nav {
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+    max-width: 300px;
+    margin-left: auto;
+
+  }
+}
+.nav li {
+  /*margin-right: 20px;*/
+  margin-bottom: 10px;
+}
+
+.nav button {
+  text-decoration: none;
+  color: #99CCCC;
+  margin-top: 5px;
+  background-color: #003333;
+  border-radius: 20px;
+  border: none;
+}
+@media screen and (max-width: 630px) {
+  .header-outer {
+    flex-flow: column wrap;
+
+  }
+  .container, .logo-container {
+    width: 100%;
+  }
+  .search-container{
+    margin: 5px  auto;
+    width: 100%;
+    max-width: 400px;
+  }
+  .nav li {
+    margin: 5px auto;
+  }
+  .nav ul{
+    width: 70%;
+  }
+  .nav button {
+    margin-top: 0;
+  }
+}

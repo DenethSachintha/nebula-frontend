@@ -1,0 +1,52 @@
+<header class="header-outer">
+  <div class="logo-container">
+    <img src="assets/img/nebula-logo.png" alt="Logo" class="logo">
+    <h1 class="nebula">nEBULA</h1>
+  </div>
+
+  <div class="container">
+    <div class="search-container">
+      <input type="text" id="nameInput" [(ngModel)]="searchTerm" class="search-box" placeholder="Search your item...">
+      <button type="submit"  (click)="searchComponentByName()" class="search-button">Search</button>
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><button routerLink="/starter/home">Home</button></li>
+        <li><button routerLink="/container/detail/{{currentComponentID}}" routerLinkActive="active">Details</button></li>
+        <li><button routerLink="/container/availability/{{currentComponentID}}" routerLinkActive="active">Availability</button></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div *ngIf="searchResults.length > 0">
+  <h3>Search Results:</h3>
+  <ul>
+    <li *ngFor="let component of searchResults">
+    <a href="/container/detail/{{component._id}}">{{ component.componentName }}</a>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="componentData">
+  <h3>{{ componentData.componentName }}</h3>
+  <img src="{{componentData.componentImage}}" alt="Component Image">
+  <h4>Component Description:</h4>
+  <p>{{ componentData.componentDescription }}</p>
+  <h4>Component Connect:</h4>
+  <p>{{ componentData.componentConnect }}</p>
+  <h4>Component Theory:</h4>
+  <p>{{ componentData.componentTheory }}</p>
+  <h4>Component Features:</h4>
+  <p>{{ componentData.componentFeatures }}</p>
+  <h4>Component Statistics:</h4>
+  <p>{{ componentData.componentStatistics }}</p>
+  </div>
+<!--
+<div *ngIf="!componentData">
+  <p>Loading component data...</p>
+</div>
+-->
+
+
+

@@ -3,7 +3,6 @@
     <img src="assets/img/nebula-logo.png" alt="Logo" class="logo">
     <h1 class="nebula">nEBULA</h1>
   </div>
-
   <div class="container">
     <div class="search-container">
       <input type="text" id="nameInput" [(ngModel)]="searchTerm" class="search-box" placeholder="Search your item...">
@@ -19,32 +18,45 @@
   </div>
 </header>
 
-<div *ngIf="searchResults.length > 0">
-  <h3>Search Results:</h3>
-  <ul>
-    <li *ngFor="let component of searchResults">
-      <a href="/container/detail/{{component._id}}">{{ component.componentName }}</a>
-    </li>
-  </ul>
-</div>
-
-<div *ngIf="componentData">
-  <h3>{{ componentData.componentName }}</h3>
-  <img src="{{componentData.componentImage}}" alt="Component Image">
-</div>
-
-<div class="stores">
-  <div class="store-container">
-    <div  *ngFor="let store of stores">
-      <button class="Store-btn"  type="button"  (click)="getStoreByNumber(store.storeNumber)">{{store.storeName}}</button>
+  <div class="search-results-wrapper">
+  <div class="search-results-container" *ngIf="searchResults.length > 0">
+    <h4 class="search-results-header">Search Results:</h4>
+    <div class="search-results-ul" *ngFor="let component of searchResults">
+      <a class="search-results-button" href="/container/availability/{{component._id}}">{{ component.componentName }}</a>
     </div>
   </div>
-  <div class="store-detail" *ngIf="storeData">
-    <h3 class="store-name">{{  storeData.storeName}}</h3>
-    <img class="store-image"  src="{{storeData.storeImage}}"  alt="Store Image"/>
-    <p class="store-description">{{  storeData.storeDescription}}</p>
-    <p class="store-location">{{  storeData.storeLocation}}</p>
-    <p class="store-phone">{{  storeData.storePhone}}</p>
-    <p class="store-url">{{  storeData.storeURL}}</p>
+</div>
+
+<div class="com-div" *ngIf="componentData" >
+  <h3 class="com-name">{{ componentData.componentName }}</h3>
+  <img class="com-image" src="{{componentData.componentImage}}" alt="Component Image">
+</div>
+<div class="stores-wrapper">
+  <div class="stores-component">
+    <div class="store-container"  *ngIf="stores">
+      <div *ngFor="let store of stores" class="" >
+        <button class="Store-btn"  type="button"  (click)="getStoreByNumber(store.storeNumber)">{{store.storeName}}</button>
+      </div>
+    </div>
+    <div class="store-detail-wrapper">
+      <div class="store-detail" *ngIf="storeData">
+        <h3 class="store-name">{{  storeData.storeName}}</h3>
+        <img class="store-image"  src="{{storeData.storeImage}}"  alt="Store Image"/>
+        <div style="margin: 10px">
+          <div class="store-flex">
+            <p class="store-url">Location:</p>
+            <a href="{{storeData.storeLocation}}" style=" font-size: 14px; padding-left: 5px;">{{  storeData.storeDescription}}</a>
+          </div>
+          <div class="store-flex" >
+            <p class="store-phone">Contact Number:</p>
+            <p style="font-size: 14px;  color: #114c4c;  padding: 5px;">{{storeData.storePhone}}</p>
+          </div>
+          <div class="store-flex">
+            <p class="store-url">Official Website:</p>
+            <a style=" font-size: 14px; padding-left: 5px;" href="{{storeData.storeURL}}">Visit {{  storeData.storeName}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

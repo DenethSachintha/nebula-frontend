@@ -19,7 +19,7 @@ export class ComponentDetailComponent implements OnInit{
   }
   getCurrentComponent() {
     this.http
-      .get<any>(`http://localhost:8081/api/v1/component/search/${this.currentComponentID}`)
+      .get<any>(`http://localhost:8080/api/v1/component/search/${this.currentComponentID}`)
       .subscribe(
         (resultData: any) => {
           this.componentData = resultData; // Store the API response data in a variable.
@@ -44,7 +44,7 @@ export class ComponentDetailComponent implements OnInit{
       return;
     }
 
-    const url = `http://localhost:8081/api/v1/component/searchByName?name=${this.searchTerm}`;
+    const url = `http://localhost:8080/api/v1/component/searchByName?name=${this.searchTerm}`;
 
     this.http.get<any[]>(url).subscribe((results) => {
       this.searchResults = results;

@@ -19,34 +19,61 @@
   </div>
 </header>
 
-<div *ngIf="searchResults.length > 0">
-  <h3>Search Results:</h3>
-  <ul>
-    <li *ngFor="let component of searchResults">
-    <a href="/container/detail/{{component._id}}">{{ component.componentName }}</a>
-    </li>
-  </ul>
+<div class="search-results-wrapper">
+  <div class="search-results-container" *ngIf="searchResults.length > 0">
+    <h4 class="search-results-header">Search Results:</h4>
+    <div class="search-results-ul" *ngFor="let component of searchResults">
+      <a class="search-results-button" href="/container/availability/{{component._id}}">{{ component.componentName }}</a>
+    </div>
+  </div>
 </div>
 
-<div *ngIf="componentData">
-  <h3>{{ componentData.componentName }}</h3>
-  <img src="{{componentData.componentImage}}" alt="Component Image">
-  <h4>Component Description:</h4>
-  <p>{{ componentData.componentDescription }}</p>
-  <h4>Component Connect:</h4>
-  <p>{{ componentData.componentConnect }}</p>
-  <h4>Component Theory:</h4>
-  <p>{{ componentData.componentTheory }}</p>
-  <h4>Component Features:</h4>
-  <p>{{ componentData.componentFeatures }}</p>
-  <h4>Component Statistics:</h4>
-  <p>{{ componentData.componentStatistics }}</p>
+<div class="com-div"  *ngIf="componentData">
+    <h3 class="com-name">{{ componentData.componentName }}</h3>
+    <img class="com-image" src="{{componentData.componentImage}}" alt="Component Image">
+
+  <div class="com-detail-outer">
+    <div class="com-detail-wrapper">
+      <div class="com-detail-left"></div>
+      <h4 class="com-detail">Component Description</h4>
+      <div class="com-detail-right"></div>
+    </div>
+    <p class="com-detail-txt">{{ componentData.componentDescription }}</p>
   </div>
-<!--
-<div *ngIf="!componentData">
-  <p>Loading component data...</p>
+
+  <div class="com-detail-outer">
+    <div class="com-detail-wrapper">
+      <div class="com-detail-left"></div>
+      <h4 class="com-detail">Component Connect</h4>
+      <div class="com-detail-right"></div>
+    </div>
+    <p class="com-detail-txt">{{ componentData.componentConnect }}</p>
+  </div>
+  <div class="com-detail-outer">
+    <div class="com-detail-wrapper">
+      <div class="com-detail-left"></div>
+      <h4 class="com-detail">Component Theory</h4>
+      <div class="com-detail-right"></div>
+    </div>
+    <p class="com-detail-txt">{{ componentData.componentTheory }}</p>
+  </div>
+  <div class="com-detail-outer">
+    <div class="com-detail-wrapper">
+      <div class="com-detail-left"></div>
+      <h4 class="com-detail">Component Features</h4>
+      <div class="com-detail-right"></div>
+    </div>
+    <p class="com-detail-txt">{{ componentData.componentFeatures }}</p>
+  </div>
+  <div class="com-detail-outer">
+    <div class="com-detail-wrapper">
+      <div class="com-detail-left"></div>
+      <h4 class="com-detail">Component Statistic</h4>
+      <div class="com-detail-right"></div>
+    </div>
+    <p class="com-detail-txt">{{ componentData.componentStatistics }}</p>
+  </div>
 </div>
--->
 
 
 

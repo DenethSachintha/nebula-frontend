@@ -7,13 +7,12 @@ body {
   margin: 0;
 }
 .header-outer {
-  background-color: #003333;
+  background-color: #114c4c;
   padding: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
-
   .active {
     font-weight: bold; font-size: 15px; color: #ffffff;
   }
@@ -40,8 +39,6 @@ body {
   color:#00FFFF;
   font-size: 35px;
   font-family: 'Montserrat Alternates', sans-serif;
-
-
 }
 .container {
   float: left;
@@ -75,7 +72,7 @@ body {
   padding: 8px 22px;
   font-size: 16px;
   background-color: #4AB6BD;
-  color: #002626;
+  color: #114c4c;
   border: none;
   font-weight: bold;
   border-radius: 20px;
@@ -84,8 +81,8 @@ body {
 
 /* Hover effect for the search button */
 .search-button:hover {
-  background-color: #6fdce3;
-  color: #000000;
+  background-color: #ace5e5;
+
 }
 .nav {
   ul {
@@ -107,7 +104,7 @@ body {
   text-decoration: none;
   color: #99CCCC;
   margin-top: 5px;
-  background-color: #003333;
+  background-color: #114c4c;
   border-radius: 20px;
   border: none;
 }
@@ -135,54 +132,158 @@ body {
     margin-top: 0;
   }
 }
-//store styles
-.stores{
-  max-width: 924px;
-  margin: auto;
+//search results
+.search-results-wrapper{
   display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.search-results-container{
+  max-width: 864px;
+  padding-inline: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+}
+.search-results-header{
+  color: #114c4c;
+  font-weight: bold;
+}
+.search-results-ul{
+  display: flex;
+  flex-wrap: wrap;
+}
+.search-results-button{
+  display: inline-block;
+  padding: 5px 15px;
+  background-color: #ffffff;
+  color: #114c4c;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+.search-results-button:hover{
+  background-color: #ace5e5;
+}
+//component styles
+.com-div{
+  display: flex;
+  flex-direction: column;
+  max-width: 924px;
+  margin:  auto;
+  padding: 0 20px 0 20px;
+}
+.com-name{
+  color: #114c4c;
+  padding: 10px;
+  margin: 10px auto;
+  font-weight: bold;
+  font-size: 30px;
+}
+.com-image{
+  width: 50%;
+  margin: auto;
+  max-width: 300px;
+}
+
+@media only screen and (max-width: 530px) {
+
+}
+//store
+.stores-wrapper{
   padding: 20px;
 }
+.stores-component{
+  //max-height: 750px;
+  border-radius: 5px;
+  max-width: 864px;
+  margin: auto;
+  display: flex;
+  border:  solid 1px #114c4c;
+}
 .store-container{
-  width: 150px;
-  border:  solid 1px #9c8345;
+  min-width: 150px;
+  border:  solid 1px #114c4c;
 }
 .Store-btn{
-  width: 100%;
-  border:  solid 1px #4f459c;
+  width: 149px;
   margin: 0;
   height: 100%;
   padding: 10px;
-  color: #001717;
+  background-color: #CCE6E6;
+  color: #114c4c;
+  font-weight: bold;
+  font-size: 12px;
+  border:  solid 1px #114c4c;
 }
-.store-detail{
-  background-color: blueviolet;
+.Store-btn:hover {
+  background-color: #ace5e5;
+}
+.store-detail-wrapper{
+  border:  solid 1px #114c4c;
+  padding: 10px;
   flex-grow: 1;
 }
+.store-detail{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.store-flex{
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
 .store-name{
-
+  color: #114c4c;
+  margin: 10px auto;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
 }
 .store-image{
-
+  max-width:200px;
 }
 .store-location{
+  font-size: 13px;
+  color: #114c4c;
+  font-weight: bold;
+  padding: 5px;
 
 }
 .store-phone{
+  font-size: 14px;
+  color: #114c4c;
+  font-weight: bold;
+  padding: 5px;
 
 }
 .store-url{
-
+  font-size: 14px;
+  color: #114c4c;
+  font-weight: bold;
+  padding: 5px;
 }
 @media only screen and (max-width: 530px) {
   .store-container{
-    width: 100px;
+    //width: 100px;
   }
   .Store-btn{
-    width: 100px;
+    width: 100%;
   }
 }
 @media only screen and (max-width: 430px) {
-  /*.col-xs-6{
-    width: 100%;
-  }*/
+  .store-image{
+    max-width:90%;
+  }
+  .store-flex{
+    justify-content: center;
+  }
 }

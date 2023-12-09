@@ -11,74 +11,77 @@
         <button type="submit" (click)="search()" class="search-button">Search</button>
       </div>
     </div>
-    <p class="find-component">Browse Categories, Components, and Stores!</p>
+    <h2 class="find-component">Browse Categories, Components and Stores</h2>
   </div>
+  <div class="search-results-wrapper">
+    <div class="search-results">
+    <div class="radio-outer">
+      <div class="radio" *ngIf="componentSearchResults.length > 0">
+        <label><input type="radio" name="myRadioGroup" [(ngModel)]="selectedRadioButton" value="1" />&nbsp;Component Search Results:</label>
+      </div>
+      <div class="radio" *ngIf="categorySearchResults.length > 0">
+        <label><input  type="radio" name="myRadioGroup" [(ngModel)]="selectedRadioButton" value="2"/>&nbsp;Category Search Results:</label>
+      </div>
+      <div class="radio" *ngIf="storeSearchResults.length > 0">
+        <label><input  type="radio" name="myRadioGroup"  [(ngModel)]="selectedRadioButton" value="3"/>&nbsp;Store Search Results:</label>
+      </div>
+    </div>
 
-  <div class="search-results">
-    <div class="component-results" *ngIf="componentSearchResults.length > 0">
-      <label><input type="radio" name="myRadioGroup" [(ngModel)]="selectedRadioButton" value="1" />Component Search Results:</label>
       <div [hidden]="selectedRadioButton !== '1'"    id="div1">
         <div class="component-results-container">
           <div *ngFor="let result of componentSearchResults">
-            <a href="/container/detail/{{ result._id}}">{{ result.componentName }}</a>
+            <a class="search-results-button" href="/container/detail/{{ result._id}}">{{ result.componentName }}</a>
           </div>
         </div>
       </div>
-    </div>
-    <div class="category-results" *ngIf="categorySearchResults.length > 0">
-      <label><input  type="radio" name="myRadioGroup" [(ngModel)]="selectedRadioButton" value="2"/>Category Search Results:</label>
+
       <div [hidden]="selectedRadioButton !== '2'"  id="div2"  >
         <div class="category-results-container">
           <div  *ngFor="let result of categorySearchResults">
-            <button  class=""  type="button"  (click)="getComponentByCategory(result.categorynumber)">{{result.categoryname}}</button>
+            <button  class="search-results-button"  type="button"  (click)="getComponentByCategory(result.categorynumber);scrollDown(300)">{{result.categoryname}}</button>
           </div>
         </div>
       </div>
-    </div>
-    <div class="store-results" *ngIf="storeSearchResults.length > 0">
-      <label><input  type="radio" name="myRadioGroup"  [(ngModel)]="selectedRadioButton" value="3"/>Store Search Results:</label>
+
       <div [hidden]="selectedRadioButton !== '3'"  id="div3" >
         <div class="store-results-container">
           <div *ngFor="let result of storeSearchResults">
-            <button class=""  type="button"  (click)="getStoreByNumber(result.storeNumber)">{{result.storeName}}</button>
+            <button class="search-results-button"  type="button"  (click)="getStoreByNumber(result.storeNumber);scrollDown(99999)">{{result.storeName}}</button>
           </div>
-       </div>
-     </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="header-icon">
     <div class="icon-text">
-      <img class="icon" src="" alt="check Icon">
-      <p class="text">100% Sure Availability checkup</p>
+      <img class="icon" width="45" height="40" src="https://img.icons8.com/ios/50/ffffff/checked-checkbox--v1.png" alt="checked-checkbox--v1"/>      <p class="text">100% Sure Availability checkup</p>
     </div>
     <div class="icon-text">
-      <img class="icon" src="" alt="search Icon">
+      <img class="icon" width="100" height="40" src="https://img.icons8.com/ios/50/ffffff/search--v1.png" alt="search--v1"/>
       <p class="text">Search hundreds of component data</p>
     </div>
     <div class="icon-text">
-      <img class="icon" src="" alt="chat Icon">
-      <p class="text">ChatBot Helps and Guidance</p>
+      <img class="icon" width="45 " height="40" src="https://img.icons8.com/ios/50/ffffff/filled-chat.png" alt="filled-chat"/>      <p class="text">Chat Guidance and Helps</p>
     </div>
   </div>
 </div>
-
-<div class="category-component">
-<!--col-md-4 col-sm-6 col-xs-12-->
-<div class="category-container">
-    <div class="row itemsBlock row-flex" *ngIf="CategoryArray">
-      <div *ngFor="let CategoryItem of CategoryArray"  >
-        <button class="category-btn"  type="button"  (click)="getComponentByCategory(CategoryItem.categorynumber)">{{CategoryItem.categoryname}}</button>
+<div class="category-component-wrapper-outer">
+<div class="category-component-wrapper">
+<div class="category-component ">
+    <div class="category-container">
+      <div class="row itemsBlock row-flex" *ngIf="CategoryArray">
+        <div *ngFor="let CategoryItem of CategoryArray"  >
+          <button class="category-btn"  type="button"  (click)="getComponentByCategory(CategoryItem.categorynumber)">{{CategoryItem.categoryname}}</button>
+        </div>
       </div>
     </div>
-</div>
-
-<div class="component-container">
+<div class="component-container" style="display: inline-block;  overflow-y: auto;">
     <div class="category-detail" *ngIf="categoryData">
-      <h3>{{categoryData.categoryname}}</h3>
-      <p>{{categoryData.categorydescription}}</p>
+      <h3 class="category-detail-header">{{categoryData.categoryname}}</h3>
+      <p class="category-detail-description">{{categoryData.categorydescription}}</p>
     </div>
-    <div class="row itemsBlock row-flex" >
+    <div class="row itemsBlock row-flex " >
       <div *ngFor="let ComponentItem of ComponentArray" class=" col-xs-6 col-sm-4 col-md-4" >
         <div class="content" >
           <img class="component-image"  src="{{ComponentItem.componentImage}}"  alt="Component Image"/>
@@ -88,19 +91,35 @@
     </div>
   </div>
 </div>
+</div>
+</div>
 
-<div class="stores">
-  <div class="store-container" *ngIf="StoreArray">
-    <div *ngFor="let StoreItem of StoreArray" class="" >
-     <button class="Store-btn"  type="button"  (click)="getStoreByNumber(StoreItem.storeNumber)">{{StoreItem.storeName}}</button>
-    </div >
-  </div>
-  <div class="store-detail" *ngIf="storeData">
-    <h3 class="store-name">{{  storeData.storeName}}</h3>
-    <img class="store-image"  src="{{storeData.storeImage}}"  alt="Store Image"/>
-    <p class="store-description">{{  storeData.storeDescription}}</p>
-    <p class="store-location">{{  storeData.storeLocation}}</p>
-    <p class="store-phone">{{  storeData.storePhone}}</p>
-    <p class="store-url">{{  storeData.storeURL}}</p>
+<div class="stores-wrapper">
+  <div class="stores-component">
+    <div class="store-container" style="display: inline-block;  overflow-y: auto;" *ngIf="StoreArray">
+      <div *ngFor="let StoreItem of StoreArray" class="" >
+       <button class="Store-btn"  type="button"  (click)="getStoreByNumber(StoreItem.storeNumber)">{{StoreItem.storeName}}</button>
+      </div>
+    </div>
+    <div class="store-detail-wrapper">
+      <div class="store-detail" *ngIf="storeData">
+        <h3 class="store-name">{{  storeData.storeName}}</h3>
+        <img class="store-image"  src="{{storeData.storeImage}}"  alt="Store Image"/>
+        <div style="margin: 10px">
+          <div class="store-flex">
+            <p class="store-url">Location:</p>
+            <a href="{{storeData.storeLocation}}" style=" font-size: 14px;">{{  storeData.storeDescription}}</a>
+          </div>
+          <div class="store-flex" >
+            <p class="store-phone">Contact Number:</p>
+            <p style="font-size: 14px;  color: #114c4c;  ">{{storeData.storePhone}}</p>
+          </div>
+          <div class="store-flex">
+            <p class="store-url">Official Website:</p>
+            <a style=" font-size: 14px;" href="{{storeData.storeURL}}">Visit {{  storeData.storeName}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

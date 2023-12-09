@@ -9,7 +9,7 @@ import {HttpClient} from "@angular/common/http";
 export class StarterComponent implements OnInit{
   ngOnInit() {
     this.getAllCategory();
-    this.getComponentByCategory("001");
+    this.getComponentByCategory("cg-001");
     this.getAllStores();
     this.getStoreByNumber("st-001");
   }
@@ -18,7 +18,7 @@ export class StarterComponent implements OnInit{
   CategoryArray : any[] = [];
   getAllCategory()
   {
-    this.http.get("http://localhost:8081/api/v1/category/getall")
+    this.http.get("http://localhost:8080/api/v1/category/getall")
 
       .subscribe((resultData: any)=>
       {
@@ -40,14 +40,14 @@ export class StarterComponent implements OnInit{
       });
   }*/
   getComponentByCategory(cgNum: string) {
-    const Url = `http://localhost:8081/api/v1/category/searchByNumber?number=${cgNum}`;
+    const Url = `http://localhost:8080/api/v1/category/searchByNumber?number=${cgNum}`;
     // Use string interpolation
     this.http.get<any>(Url).subscribe((Results) => {
       this.categoryData = Results;
       console.log(this.categoryData);
     });
 
-    const apiUrl = `http://localhost:8081/api/v1/component/getByCategoryNumber/${cgNum}`;
+    const apiUrl = `http://localhost:8080/api/v1/component/getByCategoryNumber/${cgNum}`;
     // Use string interpolation
     this.http.get<any>(apiUrl).subscribe(
       (resultData: any) => {
@@ -72,9 +72,9 @@ export class StarterComponent implements OnInit{
       return;
     }
 
-    const componentUrl = `http://localhost:8081/api/v1/component/searchByName?name=${this.searchTerm}`;
-    const categoryUrl = `http://localhost:8081/api/v1/category/searchByName?name=${this.searchTerm}`;
-    const storeUrl = `http://localhost:8081/api/v1/store/searchByName?name=${this.searchTerm}`;
+    const componentUrl = `http://localhost:8080/api/v1/component/searchByName?name=${this.searchTerm}`;
+    const categoryUrl = `http://localhost:8080/api/v1/category/searchByName?name=${this.searchTerm}`;
+    const storeUrl = `http://localhost:8080/api/v1/store/searchByName?name=${this.searchTerm}`;
 
     this.http.get<any[]>(componentUrl).subscribe((componentResults) => {
       this.componentSearchResults = componentResults;
@@ -95,7 +95,7 @@ export class StarterComponent implements OnInit{
   storeData:any;
   getAllStores()
   {
-    this.http.get("http://localhost:8081/api/v1/store/getall")
+    this.http.get("http://localhost:8080/api/v1/store/getall")
       .subscribe((resultData: any)=>
       {
         console.log(resultData);
@@ -104,11 +104,24 @@ export class StarterComponent implements OnInit{
   }
 
   getStoreByNumber(stNumber: any) {
-    const Url = `http://localhost:8081/api/v1/store/searchByNumber?number=${stNumber}`;
+    const Url = `http://localhost:8080/api/v1/store/searchByNumber?number=${stNumber}`;
     // Use string interpolation
     this.http.get<any>(Url).subscribe((Results) => {
       this.storeData = Results;
       console.log(this.storeData);
+    });
+  }
+  //scroll  window
+  scrollDown(scrollAmount: number) {
+    this.scrollTo(scrollAmount);
+  }
+
+  private scrollTo(scrollAmount: number) {
+    const currentPosition = window.scrollY;
+    const newPosition = currentPosition + scrollAmount;
+    window.scrollTo({
+      top: newPosition,
+      behavior: 'smooth'
     });
   }
 }

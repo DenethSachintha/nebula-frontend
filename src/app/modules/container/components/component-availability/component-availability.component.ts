@@ -27,16 +27,21 @@ export class ComponentAvailabilityComponent implements OnInit{
   }
   getCurrentComponent() {
     this.http
-      .get<any>(`http://localhost:8081/api/v1/component/search/${this.currentComponentID}`)
+      .get<any>(`http://localhost:8080/api/v1/component/search/${this.currentComponentID}`)
       .subscribe(
         (resultData: any) => {
           this.componentData = resultData;
           // Now that you have componentData, you can get the storeList and load stores.
           this.storeList = this.componentData.componentStores;
-          console.log(this.storeList);
+          console.log(this.storeList[0]);
+          //you can this.storeList[0] has all shop numbers.
+          const storeString = this.storeList[0];
+          const storeArray: string[] = storeString.split(',');
+
+
           this.getStoresByComponentStores();
-          this.st0=this.storeList[0];
-          this.getStoreByNumber(this.st0);
+          //this.st0=this.storeList[0];
+          this.getStoreByNumber(storeArray[0]);
         },
         (error) => {
           console.error('Error fetching component data:', error);
@@ -46,7 +51,7 @@ export class ComponentAvailabilityComponent implements OnInit{
   }
   //load stores
   getStoresByComponentStores() {
-    const url = `http://localhost:8081/api/v1/store/searchByNumbers?numbers=${this.storeList}`;
+    const url = `http://localhost:8080/api/v1/store/searchByNumbers?numbers=${this.storeList}`;
 
     this.http.get(url).subscribe(
       (response: any) => {
@@ -58,7 +63,7 @@ export class ComponentAvailabilityComponent implements OnInit{
     );
   }
   getStoreByNumber(stNumber: any) {
-    const Url = `http://localhost:8081/api/v1/store/searchByNumber?number=${stNumber}`;
+    const Url = `http://localhost:8080/api/v1/store/searchByNumber?number=${stNumber}`;
     // Use string interpolation
     this.http.get<any>(Url).subscribe((Results) => {
       this.storeData = Results;
@@ -76,7 +81,7 @@ export class ComponentAvailabilityComponent implements OnInit{
       return;
     }
 
-    const url = `http://localhost:8081/api/v1/component/searchByName?name=${this.searchTerm}`;
+    const url = `http://localhost:8080/api/v1/component/searchByName?name=${this.searchTerm}`;
 
     this.http.get<any[]>(url).subscribe((results) => {
       this.searchResults = results;
